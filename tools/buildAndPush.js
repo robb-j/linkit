@@ -7,6 +7,8 @@ const { exec } = require('child_process')
 const { promisify } = require('util')
 const readFile = promisify(fs.readFile)
 
+const version = require('../package.json').version
+
 
 ;(async () => {
   
@@ -14,7 +16,6 @@ const readFile = promisify(fs.readFile)
     
     // Generate the image tag from the REGISTRY & VERSION files
     let registry = await readFile(path.join(__dirname, '..', 'REGISTRY'), 'utf8')
-    let version = await readFile(path.join(__dirname, '..', 'VERSION'), 'utf8')
     
     // Generate tags for the image
     let tags = [ `${registry.trim()}:${version.trim()}` ]

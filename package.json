@@ -1,6 +1,6 @@
 {
   "name": "test",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "coverage": "node_modules/.bin/nyc --reporter=html node_modules/.bin/mocha test/unit",
     "coverage-summary": "node_modules/.bin/nyc --reporter=text-summary node_modules/.bin/mocha test/unit",
     "start": "node web",
-    "test": "./node_modules/mocha/bin/mocha test/unit",
+    "test": "node_modules/mocha/bin/mocha test/unit",
     "watch": "node_modules/.bin/nodemon web --watch web"
   },
   "author": "",
@@ -16,14 +16,14 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^4.8.0",
+    "eslint": "^4.13.1",
     "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.2.0",
-    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "mocha": "^3.5.3",
-    "nodemon": "^1.12.1",
-    "nyc": "^11.2.1"
+    "nodemon": "^1.13.3",
+    "nyc": "^11.4.1"
   }
 }
