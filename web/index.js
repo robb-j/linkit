@@ -1,4 +1,4 @@
 
 ;(async () => {
-  console.log('Hello, Docker!')
+  console.log('Hello, World!')
 })()
