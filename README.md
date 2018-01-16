@@ -3,9 +3,23 @@
 >
 > 30 Sept 2017 - robb-j
 
-## Features
-- Basic `Dockerfile` to build the app
-- [Docker](https://www.docker.com/what-docker) script to build & push an image based on the contents of `REGISTRY` & the package version
-- [mocha](https://www.npmjs.com/package/mocha) & [chai](https://www.npmjs.com/package/chai) unit tests setup
-- [eslint](https://eslint.org/) setup, with a bit of config tweaks
-- [nyc](https://www.npmjs.com/package/nyc) for code coverage
+```bash
+
+# Build & publish the image (from node-9:alpine)
+# -> uses REGISTRY file & the npm version to tag image
+npm run push-image
+
+# Lint the web & test directories
+npm run lint
+
+# Run the unit tests
+npm test
+
+# Generate coverage
+npm run coverage          # outputs to coverage/
+npm run coverage-summary  # outputs to terminal
+
+# Watch code with nodemon (restarts on file changes)
+npm run watch
+
+```

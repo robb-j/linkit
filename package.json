@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node tools/buildAndPush.js",
-    "coverage": "node_modules/.bin/nyc --reporter=html node_modules/.bin/mocha test/unit",
-    "coverage-summary": "node_modules/.bin/nyc --reporter=text-summary node_modules/.bin/mocha test/unit",
+    "coverage": "nyc --reporter=html mocha test/unit",
+    "coverage-summary": "nyc --reporter=text-summary mocha test/unit",
+    "lint": "eslint web test",
+    "push-image": "node tools/buildAndPush.js",
     "start": "node web",
-    "test": "node_modules/mocha/bin/mocha test/unit",
-    "watch": "node_modules/.bin/nodemon web --watch web"
+    "test": "mocha test/unit",
+    "watch": "nodemon web --watch web"
   },
   "author": "",
   "license": "ISC",

@@ -3,8 +3,9 @@ FROM node:9-alpine
 WORKDIR /app
 
 COPY package.json /app
-RUN npm install --silent --production
+
+RUN npm install -s --production
 
 COPY web /app/web
 
-CMD node web
+CMD [ "npm", "start" ]
