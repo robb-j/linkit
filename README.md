@@ -1,7 +1,5 @@
 # Node Sample Project
 > A project to kickstart a node app, with the common things already setup.  
->
-> 30 Sept 2017 - robb-j
 
 ```bash
 
