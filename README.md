@@ -1,6 +1,6 @@
 # Linkit
 
-A tiny express app to redirect traffic using a template
+A tiny express app to redirect traffic using a string template
 
 ## Environment Variables
 
@@ -12,7 +12,7 @@ A tiny express app to redirect traffic using a template
 ## Sample run
 
 ```bash
-docker run -it --rm -p 3000:3000 -e HOME_URL=https://github.com/robb-j/ -e URL_TEMPLATE=https://github.com/robb-j/{$0} robbj/linkit
+docker run -it --rm -p 3000:3000 -e HOME_URL=https://github.com/robb-j/ -e URL_TEMPLATE=https://github.com/robb-j/{0} robbj/linkit
 ```
 
 ```bash
