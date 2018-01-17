@@ -1,5 +1,19 @@
-# Node Sample Project
-> A project to kickstart a node app, with the common things already setup.  
+# Linkit
+
+A tiny express app to redirect traffic using a template
+
+## Environment Variables
+
+| Name           | Use |
+| -------------- | --- |
+| `URL_TEMPLATE` | A template to redirect the user where `{$0}` is replaced with the 1st url parmeter |
+| `HOME_URL`     | A url to redirect the user if they hit home, i.e. `/` |
+
+## Sample run
+
+```bash
+docker run -it --rm -p 3000:3000 -e HOME_URL=https://github.com/robb-j/ -e URL_TEMPLATE=https://github.com/robb-j/{$0} robbj/linkit
+```
 
 ```bash
 
