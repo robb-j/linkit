@@ -6,7 +6,7 @@ A tiny express app to redirect traffic using a string template
 
 | Name           | Use |
 | -------------- | --- |
-| `URL_TEMPLATE` | A template to redirect the user where `{$0}` is replaced with the 1st url parmeter |
+| `URL_TEMPLATE` | A template to redirect the user where `{0}` is replaced with the 1st url parmeter |
 | `HOME_URL`     | A url to redirect the user if they hit home, i.e. `/` |
 
 ## Sample run
