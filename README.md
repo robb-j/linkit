@@ -15,6 +15,8 @@ A tiny express app to redirect traffic using a string template
 docker run -it --rm -p 3000:3000 -e HOME_URL=https://github.com/robb-j/ -e URL_TEMPLATE=https://github.com/robb-j/{0} robbj/linkit
 ```
 
+## Dev Commands
+
 ```bash
 
 # Build & publish the image (from node-9:alpine)
