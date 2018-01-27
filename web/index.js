@@ -18,6 +18,7 @@ if (!process.env.URL_TEMPLATE) {
   
   // Our express app with traffic logging
   let app = express()
+  app.set('trust proxy', true)
   let logStream = fs.createWriteStream(path.join(__dirname, '../logs/access.log'), {flags: 'a'})
   app.use(morgan('combined', { stream: logStream }))
   

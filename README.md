@@ -12,16 +12,22 @@ A tiny express app to redirect traffic using a string template
 ## Sample run
 
 ```bash
-docker run -it --rm -p 3000:3000 -e HOME_URL=https://github.com/robb-j/ -e URL_TEMPLATE=https://github.com/robb-j/{0} robbj/linkit
+docker run -it --rm -p 3000:3000 \
+  -e "HOME_URL=https://github.com/robb-j/" \
+  -e "URL_TEMPLATE=https://github.com/robb-j/{0}" \
+  robbj/linkit
 ```
 
 ## Dev Commands
 
 ```bash
 
-# Build & publish the image (from node-9:alpine)
+# Manually build & publish the image (from node-9:alpine)
 # -> uses REGISTRY file & the npm version to tag image
 npm run push-image
+
+# Update version (builds & pushes a new docker image)
+npm version ... # --help
 
 # Lint the web & test directories
 npm run lint

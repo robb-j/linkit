@@ -8,6 +8,7 @@
     "coverage-summary": "nyc --reporter=text-summary mocha test/unit",
     "lint": "eslint web test",
     "push-image": "node tools/buildAndPush.js",
+    "postversion": "node tools/buildAndPush.js latest",
     "start": "node web",
     "test": "mocha test/unit",
     "watch": "nodemon web --watch web"
