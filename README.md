@@ -21,12 +21,14 @@ docker run -it --rm -p 3000:3000 \
 ## Dev Commands
 
 ```bash
+# Start the app
+npm run start
 
-# Manually build & publish the image (from node-9:alpine)
-# -> uses REGISTRY file & the npm version to tag image
-npm run push-image
+# Start the app and reload on file changes
+npm run watch
 
 # Update version (builds & pushes a new docker image)
+# -> Uses the REGISTRY file & the npm version to tag image
 npm version ... # --help
 
 # Lint the web & test directories
@@ -35,9 +37,8 @@ npm run lint
 # Run the unit tests
 npm test
 
-# Generate coverage
-npm run coverage          # outputs to coverage/
-npm run coverage-summary  # outputs to terminal
+# Generate coverage, outputs to coverage/
+npm run coverage
 
 # Watch code with nodemon (restarts on file changes)
 npm run watch

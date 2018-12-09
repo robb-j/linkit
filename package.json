@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "coverage": "nyc --reporter=html mocha test/unit",
-    "coverage-summary": "nyc --reporter=text-summary mocha test/unit",
     "lint": "eslint web test",
-    "push-image": "node tools/buildAndPush.js",
     "postversion": "node tools/buildAndPush.js latest",
     "start": "node web",
     "test": "mocha test/unit",
@@ -16,8 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
-    "morgan": "^1.9.1"
+    "dotenv": "^6.2.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
