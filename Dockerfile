@@ -5,5 +5,5 @@ EXPOSE 3000
 COPY ["package.json", "package-lock.json", "/app/"]
 ENV NODE_ENV production
 RUN npm ci > /dev/null
-COPY src /app/src
+COPY web /app/src
 CMD [ "npm", "start", "-s" ]
