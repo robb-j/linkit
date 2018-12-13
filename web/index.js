@@ -4,7 +4,8 @@ const fs = require('fs')
 const { join } = require('path')
 const { createServer } = require('http')
 
-const statsPath = join(__dirname, '../logs/stats.json')
+const logsDir = join(__dirname, '../logs')
+const statsPath = join(logsDir, 'stats.json')
 
 // Check the HOME_URL variable is set
 if (!process.env.HOME_URL) {
@@ -17,6 +18,9 @@ if (!process.env.URL_TEMPLATE) {
   console.log(`No 'URL_TEMPLATE' set`)
   process.exit(1)
 }
+
+// Ensure the logs directory exists
+fs.mkdirSync(logsDir, { recursive: true })
 
 // Load the stats file or create a new one
 function loadOrCreateStats() {
