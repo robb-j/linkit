@@ -1,6 +1,6 @@
 # Linkit
 
-A tiny express app to redirect traffic using a string template
+A tiny node app to redirect traffic using a string template
 
 ## Environment Variables
 
