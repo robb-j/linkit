@@ -1,28 +1,53 @@
 {
-  "name": "test",
+  "name": "linkit",
   "version": "0.2.3",
-  "description": "",
-  "main": "index.js",
+  "description": "A tiny server to redirect traffic based on paths",
+  "private": true,
+  "repository": "robb-j/linkit",
+  "author": "",
+  "license": "MIT",
+  "keywords": [],
   "scripts": {
     "coverage": "nyc --reporter=html mocha test/unit",
-    "lint": "eslint web test",
+    "lint": "eslint web",
+    "prettier": "prettier --write '**/*.{js,json,css,md,ts,tsx}'",
     "postversion": "node tools/buildAndPush.js latest",
     "start": "node web",
     "test": "mocha test/unit",
     "watch": "nodemon web --watch web"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "valid-env": "^1.0.2"
   },
   "devDependencies": {
     "eslint": "^7.3.1",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "nodemon": "^2.0.4"
+    "lint-staged": "^10.2.11",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "yorkie": "^2.0.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "lint-staged": {
+    "*.{js,json,css,md,ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
   }
 }
