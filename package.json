@@ -11,7 +11,6 @@
     "coverage": "nyc --reporter=html mocha test/unit",
     "lint": "eslint web",
     "prettier": "prettier --write '**/*.{js,json,css,md,ts,tsx}'",
-    "postversion": "node tools/buildAndPush.js latest",
     "start": "node web",
     "test": "mocha test/unit",
     "watch": "nodemon web --watch web"
