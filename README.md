@@ -40,7 +40,7 @@ npm run coverage
 ## Versioning and releasing
 
 Use [npm version] to generate a new version and push it to [GitHub](https://github.com/robb-j/linkit).
-This will trigger a [https://hub.docker.com/r/robbj/linkit] pipeline to build a docker image.
+This will trigger a [DockerHub](https://hub.docker.com/r/robbj/linkit) pipeline to build a docker image.
 
 ```bash
 npm version # minor | major | patch | --help
