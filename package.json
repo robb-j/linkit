@@ -9,11 +9,11 @@
   "keywords": [],
   "scripts": {
     "coverage": "nyc --reporter=html mocha test/unit",
-    "lint": "eslint web",
+    "lint": "eslint src",
     "prettier": "prettier --write '**/*.{js,json,css,md,ts,tsx}'",
-    "start": "node web",
+    "start": "node src",
     "test": "mocha test/unit",
-    "watch": "nodemon web --watch web"
+    "watch": "nodemon src --watch src"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
