@@ -1,6 +1,6 @@
 {
   "name": "linkit",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A tiny server to redirect traffic based on paths",
   "private": true,
   "repository": "robb-j/linkit",
