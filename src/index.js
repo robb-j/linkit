@@ -1,27 +1,10 @@
 require('dotenv').config()
 
-const fs = require('fs')
-const { join } = require('path')
 const { createServer } = require('http')
 const { validateEnv } = require('valid-env')
 
-const logsDir = join(__dirname, '../logs')
-const statsPath = join(logsDir, 'stats.json')
-
 validateEnv(['HOME_URL', 'URL_TEMPLATE'])
 const { HOME_URL, URL_TEMPLATE } = process.env
-
-// Ensure the logs directory exists
-fs.mkdirSync(logsDir, { recursive: true })
-
-// Load the stats file or create a new one
-function loadOrCreateStats() {
-  try {
-    return JSON.parse(fs.readFileSync(statsPath, 'utf8'))
-  } catch (err) {
-    return {}
-  }
-}
 
 // Return a http/302 redirect to another url
 function redirect(res, url) {
@@ -32,45 +15,49 @@ function redirect(res, url) {
 }
 
 // Return a http/200 with a json contents
-function sendJson(res, data) {
+function sendStats(res) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8')
   res.statusCode = 200
-  res.end(JSON.stringify(data))
+  res.end(JSON.stringify(Object.fromEntries(stats.entries())))
+}
+
+// Send back an "OK" unless terminating
+function sendHealth(res) {
+  res.setHeader('Content-Type', 'application/json; charset=utf-8')
+  res.statusCode = terminating ? 503 : 200
+  res.end(JSON.stringify({ msg: terminating ? 'terminating' : 'ok' }))
 }
 
 // Shutdown the http server and exit the process
+// waits for 5s for services to stop routing traffic
 function shutdown(server) {
+  terminating = true
   console.log('Exiting ...')
-  server.close(() => process.exit())
+
+  setTimeout(() => server.close(() => process.exit()), 5000)
 }
 
-;(async () => {
-  const stats = loadOrCreateStats()
-  let hasChanges = false
+let terminating = false
+const stats = new Map()
+const skipList = new Set(['/healthz'])
 
+;(async () => {
   // Create our http server
   const server = createServer((req, res) => {
     // Increment the viewcount for this url
-    if (!stats[req.url]) stats[req.url] = 0
-    stats[req.url]++
-    hasChanges = true
+    if (skipList.has(req.url) === false) {
+      stats.set(req.url, (stats.get(req.url) || 0) + 1)
+    }
 
     // Remove leading & trailing slashes
     const path = req.url.replace(/^\/+/, '').replace(/\/+$/, '')
 
     // Perform routing
     if (path === '') redirect(res, HOME_URL)
-    else if (path === 'stats.json') sendJson(res, stats)
-    else if (path === 'healthz') sendJson(res, { msg: 'ok' })
+    else if (path === 'stats.json') sendStats(res)
+    else if (path === 'healthz') sendHealth(res)
     else redirect(res, URL_TEMPLATE.replace(/\{0\}/g, path))
   })
-
-  // Tick every second, save stats changes if there are any
-  setInterval(() => {
-    if (!hasChanges) return
-    fs.writeFileSync(statsPath, JSON.stringify(stats))
-    hasChanges = false
-  }, 10000)
 
   // Start the app
   await new Promise((resolve) => server.listen(3000, resolve))
