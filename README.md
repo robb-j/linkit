@@ -11,11 +11,13 @@ A tiny node app to redirect traffic using a string template
 
 ## Sample run
 
+> [Find the latest tag here](https://hub.docker.com/r/robbj/linkit/tags)
+
 ```bash
 docker run -it --rm -p 3000:3000 \
   -e "HOME_URL=https://github.com/robb-j/" \
   -e "URL_TEMPLATE=https://github.com/robb-j/{0}" \
-  robbj/linkit
+  robbj/linkit:v0.5.0
 ```
 
 ## Dev Commands
@@ -46,3 +48,7 @@ This will trigger a [DockerHub](https://hub.docker.com/r/robbj/linkit) pipeline 
 npm version # minor | major | patch | --help
 git push --tags
 ```
+
+## Future work
+
+- Make stats storage persist better, perhaps via redis?
